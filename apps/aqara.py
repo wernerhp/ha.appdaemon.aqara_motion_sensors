@@ -1,11 +1,6 @@
-"""
-Aqara app for resetting the state of Xiaomi Aqara motion sensors.
-"""
-
 import json
 import time
 import hassapi as hass
-import mqttapi as mqtt
 
 MODULE = 'aqara'
 CLASS = 'Aqara'
@@ -23,22 +18,22 @@ class Aqara(hass.Hass):
 
     handles = []
     for entity_id in motion_sensors:
-      handle = self.listen_event(self.motion_event, "xiaomi_aqara.motion", entity_id=entity_id)
+      handle = self.listen_event(self.motion_sensor_state_on, "xiaomi_aqara.motion", entity_id=entity_id)
       handles.append(handle)
 
-  def motion_event(self, event, data, kwargs):	
-    """Handle motion event"""
-    entity = self.get_state(data.get("entity_id"), attribute='all')
-    entity["state"] = "on"
-    self.set_state(**entity)
+  def motion_sensor_state_on(self, event, data, kwargs):
+    """Set motion sensor state to on"""
+    entity_id = kwargs.get("entity_id")
+    if not entity_id:
+      return
+    self.set_state(entity_id, state="on")
 
     timeout = self.args.get(CONF_TIMEOUT, DEFAULT_TIMEOUT)
-    self.run_in(self.motion_sensor_state_off, timeout, entity=entity)
+    self.run_in(self.motion_sensor_state_off, timeout, entity_id=entity_id)
 
   def motion_sensor_state_off(self, kwargs):
     """Set motion sensor state to off"""
-    entity = kwargs.get("entity")
-    if entity is None:
+    entity_id = kwargs.get("entity_id")
+    if not entity_id:
       return
-    entity["state"] = "off"
-    self.set_state(**entity)
+    self.set_state(entity_id, state="off")
