@@ -10,7 +10,13 @@ An AppDaemon app to reset Xiaomi Aqara motion sensors after a given timeout.
 [This hardware motion sensor hack](https://livebywant.tistory.com/13?category=703455) allows motion to be detected every 5 seconds, however it still takes 300 seconds to reset the state to off.
 This app will motions sensor state to off after a given timeout, e.g. 5 seconds.  Together your Xiaomi Aqara motion sensors can toggle state on or off every 5 seconds.
 
-## Installation
+## HACS Installation
+1. Make sure you have the option "Enable AppDaemon apps discovery & tracking". This is located in: Configuration -> Integrations -> HACS (options).
+2. Restart HA
+3. Go to HACS -> Automation -> search for "Aqara Motion Sensors" and install it.
+4. Follow app configuration section.
+
+## Manual Installation
 Download the `aqara` directory from inside the `apps` directory to your local `apps` directory, then configure the `aqara` module in `apps.yaml`.
 
 ## App configuration
