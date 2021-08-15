@@ -17,12 +17,13 @@ class Aqara(hass.Hass):
     motion_sensors = self.args.get(CONF_MOTION_SENSORS, [])
 
     for entity_id in motion_sensors:
-      self.listen_event(self.motion_sensor_state_on, "xiaomi_aqara.motion", entity_id=entity_id)
+      self.listen_state(self.motion_sensor_state_on, entity_id)
 
-  def motion_sensor_state_on(self, event, data, kwargs):
+  def motion_sensor_state_on(self, entity_id, attribute, old, new, kwargs):
     """Set motion sensor state to on"""
-    entity_id = kwargs.get("entity_id")
     if not entity_id:
+      return
+    if new != "on": 
       return
     state = self.get_state(entity_id, attribute="all")
     self.set_state(entity_id, state="on", attributes=state.get("attributes", {}))
