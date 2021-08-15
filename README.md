@@ -38,3 +38,6 @@ key | optional | type | default | description
 `class` | False | string | | The name of the Class.
 `timeout` | True | int | 5 | Timeout after which motion sensor state is set to off.
 `motion_sensors` | False | list | | A list of motion sensor entity_ids.
+
+## Configuration Guide
+- [Как настроить? \ How to configure it?](https://github.com/wernerhp/appdaemon_aqara_motion_sensors/issues/8#issue-784614244)
