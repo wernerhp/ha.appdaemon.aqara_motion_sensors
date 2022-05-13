@@ -1,7 +1,3 @@
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
-
-<a href="https://www.buymeacoffee.com/wernerhp" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
-
 # Aqara Motion Sensors
 
 ## Introduction
@@ -11,10 +7,15 @@ An AppDaemon app to reset Xiaomi Aqara motion sensors after a given timeout.
 This app will motions sensor state to off after a given timeout, e.g. 5 seconds.  Together your Xiaomi Aqara motion sensors can toggle state on or off every 5 seconds.
 
 ## HACS Installation
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
 1. Make sure you have the option "Enable AppDaemon apps discovery & tracking". This is located in: Configuration -> Integrations -> HACS (options).
 2. Restart HA
 3. Go to HACS -> Automation -> search for "Aqara Motion Sensors" and install it.
-4. Follow app configuration section.
+4. Follow app configuration section.  
+
+<a href="https://www.buymeacoffee.com/wernerhp" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+
+> ℹ️ NOTE: If you also ControllerX, then you might have naming conflicts within HACS.  To get around this you can rename either of the two integrations to e.g. `aqaramotion` in the `custom_components` folder and do the same in your `apps.yaml`.
 
 ## Manual Installation
 Download the `aqara` directory from inside the `apps` directory to your local `apps` directory, then configure the `aqara` module in `apps.yaml`.
